@@ -2,8 +2,6 @@ package kr.web.ch02;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +22,7 @@ public class GugudanServlet extends HttpServlet {
 //		HTML 출력을 위한 출력 스트림 생성
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
-		out.println("<head><title></head></title>");
+		out.println("<head><title>구구단</title></head>");
 		out.println("<body>");
 		out.println(dan + "단<br>");
 		out.println("-------------------<br>");
@@ -34,5 +32,7 @@ public class GugudanServlet extends HttpServlet {
 		out.println("");
 		out.println("</body>");
 		out.println("</html>");
+	
+		out.close();
 	}
 }
