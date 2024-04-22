@@ -12,5 +12,9 @@
 요청정보 전송 방식 = <%= request.getMethod() %><br>
 요청 URL(Uniform Resource Locator) = <%= request.getRequestURL() %> <br>
 요청 URI(Uniform Resource Identifier) = <%= request.getRequestURI() %><br>
+컨텍스트 경로 = <%= request.getContextPath() %><br>
+쿼리 문자열 = <%= request.getQueryString() %><br>
+서버 이름 = <%= request.getServerName() %><br>
+서버 포트 = <%= request.getServerPort() %><br>
 </body>
 </html>
