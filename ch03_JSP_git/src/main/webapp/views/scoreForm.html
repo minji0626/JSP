@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>성적 처리 하기</title>
+<style>
+	ul{
+		list-style: none;
+	}
+</style>
+<script type="text/javascript">
+/* window.onclick = function() {
+	// form 이벤트 연결하기
+	const myForm = document.getElementById('myForm');
+	myForm.onsubmit = function() {
+		// 성적 0~100 사이의 숫자만 가능하고, 숫자만 입력 가능하고
+		const kor = document.getElementById('korean')
+		if(isNaN(kor.value)){
+			alert('숫자만 입력 가능합니다.');
+			kor.value ='';
+			return false;
+		} else if(kor.value < 0 || kor.value > 100){
+			alert('0부터 100까지의 범위로만 입력해주세요.');
+			kor.value = '';
+			return false;
+		} else if(kor.value.trim()==''){
+			alert('점수를 입력하세요');
+			return false;
+		}
+
+		const eng = document.getElementById('english')
+		if(isNaN(eng.value)){
+			alert('숫자만 입력 가능합니다.');
+			eng.value ='';
+			return false;
+		} else if(eng.value < 0 || eng.value > 100){
+			alert('0부터 100까지의 범위로만 입력해주세요.');
+			eng.value = '';
+			return false;
+		} else if(eng.value.trim()==''){
+			alert('점수를 입력하세요');
+			return false;
+		}
+
+		const math = document.getElementById('korean')
+		if(isNaN(math.value)){
+			alert('숫자만 입력 가능합니다.');
+			math.value ='';
+			return false;
+		} else if(math.value < 0 || math.value > 100){
+			alert('0부터 100까지의 범위로만 입력해주세요.');
+			math.value = '';
+			return false; 
+		} else if(math.value.trim()==''){
+			alert('점수를 입력하세요');
+			return false;
+		}
+	}
+
+
+} */
+
+window.onload = function() {
+    const myForm = document.getElementById('myForm');
+    //form 이벤트 연결
+    myForm.onsubmit = function() {
+		const items = document.querySelectorAll('input[type="text"]');
+		for(let i = 0; i < items.length; i++){
+			/* 입력을 하지 않았거나 공백을 입력한 경우*/
+			if(items[i].value.trim()==''){
+				const label = document.querySelector('label[for="' + items[i].id + '"]');
+				const label_text = label.textContent;
+				alert(label_text + ' 항목 입력은 필수입니다.');
+				items[i].value = '';
+				items[i].foucus();
+				return false;
+			}
+
+			// 문자인지 숫자인지 체크
+			if(isNaN(items[i].value)){
+				alert('성적은 숫자만 가능');
+				items[i].value='';
+				items[i].foucus();
+				return false;
+			}
+
+			// 0 ~ 100 값만 인정
+			if(items[i].value < 0 || items[i].value > 100){
+				alert("0 ~ 100까지만 입력 가능");
+				items[i].value = '';
+				items[i].foucus();
+				return false;
+			}
+		}
+    };
+};
+</script>
+</head>
+<body>
+<h3>성적 처리 하기</h3>
+<form action="/ch03_JSP/score" method="post" id="myForm">
+	<ul>
+		<li>
+			<label for="korean">국어</label>
+			<input type="text" name="korean" id="korean">
+		</li>
+		<li>
+			<label for="english">영어</label>
+			<input type="text" name="english" id="english">
+		</li>
+		<li>
+			<label for="math">수학</label>
+			<input type="text" name="math" id="math">
+		</li>
+	</ul>
+	<input type="submit" value="입력">
+</form>
+</body>
+</html>

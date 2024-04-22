@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>[실습] 여행지 선택</title>
+<script type="text/javascript">
+window.onload = function(){
+	// 폼태그 이벤트 연결
+	const form = document.getElementById('myForm');
+
+	form.onsubmit = function() {
+		// 이름 필수 유효성 체크
+		const name = document.getElementById('name');
+		if(name.value.trim() == ''){
+			alert('이름을 입력하세요.');
+			name.value='';
+			name.focus();
+			return false;
+		}
+
+		// 여행지 두 개 이상 필수 선택
+		const city = document.getElementsByClassName('cb-city');
+		var count = 0;
+		for(var i=0;i<city.length;i++){ // 체크를 했을 경우 count의 값이 증가
+			if(city[i].checked == true){
+				count++;
+			}
+		}
+		if(count < 2){
+			alert('2개 이상 여행지를 선택해주세요.');
+/* 			for(var i=0;i<city.length;i++){
+				city[i].checked = false;
+			} */
+			return false;
+	}
+}
+}
+</script>
+</head>
+<body>
+	<h3>여행지를 선택하세요 (2개 이상 선택)</h3>
+	<form action="/ch03_JSP/travel" method="post" id="myForm">
+	이름 : <input type="text" name="name" id="name"><br>
+	여행지 선택<br>
+	<input type="checkbox" name="city" value="서울" class="cb-city">서울
+	<input type="checkbox" name="city" value="뉴욕" class="cb-city">뉴욕
+	<input type="checkbox" name="city" value="런던" class="cb-city">런던
+	<input type="checkbox" name="city" value="파리" class="cb-city">파리
+	<input type="submit" value="전송">
+	</form>
+</body>
+</html>
