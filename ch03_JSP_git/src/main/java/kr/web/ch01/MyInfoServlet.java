@@ -39,7 +39,7 @@ public class MyInfoServlet extends HttpServlet {
 		out.println("주소 : " + address+"<br>");
 		out.println("</body>");
 		out.println("</html>");
-		
+		   
 		
 		out.close();
 	}

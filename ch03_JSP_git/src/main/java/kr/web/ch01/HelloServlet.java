@@ -25,7 +25,7 @@ public class HelloServlet extends HttpServlet {
 		out.println("처음 작성하는 servlet 입니다.");
 		out.println("</body>");
 		out.println("</html>");
-		   
+		     
 //		자원 정리
 		out.close();
 	}
