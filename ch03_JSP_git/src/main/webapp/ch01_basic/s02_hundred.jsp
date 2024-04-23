@@ -7,10 +7,10 @@
 <title>1부터 100까지의 합</title>
 </head>
 <body>
-<h1>1부터 100까지의 합은</h1>
+<h1>1부터 100까지의 합</h1>
 <%
 	int total = 0;
-	for(int i = 1; i<=100; i++){
+	for(int i=1;i<=100;i++){
 		total += i;
 	}
 	out.println("1부터 100까지의 합 : " + total);

@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구구단</title>
+<title>구구단 - 5단</title>
 </head>
 <body>
 5단<br>
-------------------------<br>
+-----------<br>
 <%
-	for(int i = 1; i<=9; i++){
-		out.println("5 * " + i + " = " + 5*i + "<br>");
+	for(int i=1;i<=9;i++){
+		//출력
+		out.println("5 * " + i + " = " + 5 * i + "<br>");
 	}
 %>
 </body>
