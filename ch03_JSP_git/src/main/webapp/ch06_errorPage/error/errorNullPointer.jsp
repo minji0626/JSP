@@ -4,12 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>500 에러 발생</title>
+<title>NULL 에러 발생</title>
 </head>
 <body>
-<h1>500</h1>
-<strong>페이지 호출시 오류가 발생했습니다.</strong>
-<br><br>
-잠시 후에 다시 사용하시기 바랍니다.
+<h1>NULL</h1>
+<strong>서비스 처리 과정에서 NULL 예외가 발생하였습니다.</strong>
 </body>
 </html>

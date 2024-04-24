@@ -12,6 +12,12 @@
   	<location>/ch06_errorPage/error/error500.jsp</location>
   </error-page>
   
+  <!-- 에러 타입별 에러 페이지 지정 -->
+  <error-page>
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<location>/ch06_errorPage/error/errorNullPointer.jsp</location>
+  </error-page>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
