@@ -53,7 +53,7 @@ public class UploadServlet2 extends HttpServlet {
 			for(Part p : parts) {
 				String name = p.getName();
 				String collecFileName = p.getSubmittedFileName();
-				if(name != null && collecFileName != null) {
+				if(name != null && collecFileName.isEmpty()) {
 					p.write(realFolder + "/" + collecFileName);
 					out.println("<img src=\"/ch03_JSP/upload/"+collecFileName+"\">");
 				}
