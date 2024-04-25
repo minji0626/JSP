@@ -19,7 +19,9 @@ request.setCharacterEncoding("UTF-8");
 String name = request.getParameter("name");
 int price = Integer.parseInt(request.getParameter("price"));
 int stock = Integer.parseInt(request.getParameter("stock"));
-String origin = request.getParameter("name");
+String origin = request.getParameter("origin");
+
+
 
 // DB 연결시키기
 Connection conn = null;
