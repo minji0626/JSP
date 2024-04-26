@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery를 이용한 비동기 통신 구현</title>
+<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// JSON 데이터를 읽어 옴
+	$.ajax({
+		url: 'myJSON.jsp', // 요청 URL
+		// 데이터 타입을 지정 안 하면 단순 텍스트로 읽어버림, JSON은 객체로 인식해줘야 하기 때문에 datatype을 알려줌
+		// 서버로부터 전송받은 데이터의 타입 지정
+		dataType : 'json', 
+		success : function(param){
+			$(param).each(function(index,item){
+				let output = '';
+				output += '<div>';
+				output += '<h1>' + item.name + '</h1>';
+				output += '<p>' + item.job + '</p>';
+				output += '<p>' + item.age + '</p>';
+				output += '</div>';
+				
+				$('#output').append(output);
+			});
+		}
+	});
+});
+
+</script>
+</head>
+<body>
+	<div id="output">
+	</div>
+</body>
+</html>
