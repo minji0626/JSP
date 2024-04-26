@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="kr.util.DBUtil" %>
+<%@ page import="kr.util.DBUtil"%>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.PreparedStatement"%>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Product Insert Process</title>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style2.css" type="text/css">
 </head>
 <body>
 <%
@@ -20,8 +20,6 @@ String name = request.getParameter("name");
 int price = Integer.parseInt(request.getParameter("price"));
 int stock = Integer.parseInt(request.getParameter("stock"));
 String origin = request.getParameter("origin");
-
-
 
 // DB 연결시키기
 Connection conn = null;
@@ -50,7 +48,7 @@ try{
 	<div class="result-display">
 	 <div class="align-center">
 	 	Product Insert Complete!<p></p>
-	 	<input type="button" value="List" onclick="location.href='selectTest.jsp'">
+	 	<input type="button" class="button" value="List" onclick="location.href='selectTest.jsp'">
 	 </div>
 	</div>
 <%
@@ -59,7 +57,7 @@ try{
 	<div class="result-display">
 	 <div class="align-center">
 	 	Product Insert Uncompleted. Error has occurred.<p></p>
-	 	<input type="button" value="Insert" onclick="location.href='insertTestForm.jsp'">
+	 	<input type="button" class="button" value="Insert" onclick="location.href='insertTestForm.jsp'">
 	 </div>
 	</div>
 <% 
