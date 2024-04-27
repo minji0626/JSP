@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+* {
+    font-family: sans-serif;
+}
 body{
     padding: 0;
     margin: 0;
@@ -39,7 +41,7 @@ table td, table th{
 form{
     width: 500px;
     margin: 0 auto;
-    border: 1px solid #000;
+    border: 2px solid #000;
     padding: 10px 10px 10px 30px;
 }
 ul{
@@ -48,4 +50,26 @@ ul{
 label{
     width: 100px;
     float: left; /* 태그를 왼쪽으로 정렬 */
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.button{
+    border: 2px solid #b5b4b8;
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button:hover {
+    border-radius: 20px;
+    background-color: #eeedf0;
+}
+
+a{
+	text-decoration-line: none;
+	color: black;
+}
+a:hover {
+	color: #cebdff;
 }

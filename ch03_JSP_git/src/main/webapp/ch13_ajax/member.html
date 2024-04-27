@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아이디 중복 체크</title>
+<style>
+    ul{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    ul li{
+        padding: 0;
+        margin: 0 0 0 10px 0;
+    }
+    label{
+        width: 100px;
+        float: left;
+    }
+</style>
+<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        // 아이디 중복 체크 결과 -> 0: 아이디 중복 체크 미실시(아이디 중복)
+        //                          1: 아이디 미중복
+        let count = 0;
+        $('#confirm_id').click(function(){
+            if($('#id').val().trim()==''){
+                alert('ID를 입력하세요.');
+                $('#id').val('').focus();
+                return; // submit이 아니면 return만 사용
+            }
+
+            // 서버와 통신
+            $.ajax({
+                url:'confirmId.jsp', // 요청 URL
+                type : 'post',    // 클라이언트에서 데이터를 전송할 때 전송 방식
+                dataType : 'json',  // 서버로부터 전송되어지는 데이터 타입
+                data : {id:$('#id').val()}, // 서버로 전송할 데이터
+                success : function(param){
+                    if(param.result == 'idDuplicated'){
+                        count = 0;
+                        $('#id_signed').text('이미 등록된 아이디입니다.').css('color', 'red');
+                        $('#id').val('').focus();
+                    } else if(param.result == 'idNotFound'){
+                        count = 1;
+                        $('#id_signed').text('사용 가능한 아이디입니다.').css('color', 'black');
+                    } else{
+                        count = 0;
+                        alert('아이디 중복 체크 오류!');
+                    }
+                },
+                error : function(){
+                    count = 0;
+                    alert('Network Error Occurred');
+                }
+            });
+        }); // end of click
+        
+        // 아이디 입력창에 데이터를 입력하면 중복 체크 관련 정보를 초기화 시키기
+        $('#insert_form #id').keydown(function(){
+        	count = 0;
+        	$('#id_signed').text('');
+        }); // end of keydown
+        
+        $('#insert_form').submit(function(){
+        	if($('#id').val().trim()==''){
+        		alert('아이디를 입력해주세요.');
+        		$('#id').val('').focus();
+        		return false;
+        	}
+        	if(count == 0){
+        		alert('아이디 중복체크는 필수입니다.');
+        		return false;
+        	}
+        });	// end of submit
+    });
+</script>
+</head>
+<body>
+<form id="insert_form" action="register.jsp" method="post">
+<fieldset>
+    <legend>회원 가입</legend>
+    <ul>
+        <li>
+            <label for="id">아이디</label>
+            <input type="text" id="id" name="id">
+            <input type="button" id="confirm_id" value="아이디 중복 체크" >
+            <span id="id_signed"></span>
+        </li>
+        <li>
+            <input type="submit" value="전송">
+        </li>
+    </ul>
+</fieldset>
+</form>
+</body>
+</html>

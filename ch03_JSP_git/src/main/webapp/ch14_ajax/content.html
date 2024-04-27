@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 목록</title>
+<style>
+	form{
+		width: 500px;
+		margin: 10px auto;
+	}
+	ul{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	ul li{
+		padding: 0;
+		margin: 0 0 10px 0;
+	}
+	label{
+		width: 150px;
+		float: left;
+	}
+	table{
+		border: 1px solid gray;
+		width: 500px;
+		margin: 0 auto;
+		border-collapse: collapse;
+	}
+	td{
+		border: 1px solid gray;
+		padding: 10px;
+	}
+</style>
+<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 회원 목록
+		function selectList(){
+			$.ajax({
+				url:'getPeopleJSON.jsp',
+				dataType:'json',
+				success : function(param){
+					// table 의 내부 내용물 제거(초기화)
+					$('#output').empty();
+					
+					$(param).each(function(index,item){
+						let output = '';
+						output += '<tr>';
+						output += '<td>' + item.id+'</td>';
+						output += '<td>' + item.name+'</td>';
+						output += '<td>' + item.job+'</td>';
+						output += '<td>' + item.address+'</td>';
+						output += '<td>' + item.blood_type+'</td>';
+						output += '<td>' + item.reg_date+'</td>';
+						output += '</tr>';
+						
+						$('#output').append(output);
+					});
+				},	
+				error : function(){
+					alert('Network Error Occurred');
+				}
+			});
+		};
+		
+		// 회원 등록 이벤트 연결
+		$('#insert_form').submit(function(event){
+			let input_data = $(this).serialize(); // 입력 양식의 내용을 요청 매개 변수 문자열로 만듬(파라미터 네임과 value의 쌍, 인코딩 처리)
+			
+			// 서버와 통신
+			$.ajax({
+				url : 'insertPerson.jsp',
+				type : 'post',
+				data : input_data,
+				dataType : 'json',
+				success : function(param){
+					if(param.result == 'success'){ // 회원 가입 성공
+						alert('회원 가입에 성공했습니다.');
+					
+						// Form 초기화 작업, text 인것만 삭제 시켜줌
+						$('#insert_form input[type="text"]').val('');
+
+						// 목록 호출
+						selectList();
+					} else{ // 회원 가입 실패
+						alert('회원 가입 도중에 오류가 발생했습니다.');
+					}
+				},
+				error : function(param){
+					alert('Network Error Occurred');
+				}
+			});
+			// 기본 이벤트 제거하기
+			event.preventDefault();
+		}); // end of submit
+		
+		// 초기 화면에 데이터를 표시
+		selectList();
+	});
+</script>
+</head>
+
+<body>
+	<form id="insert_form">
+		<fieldset>
+			<legend>회원 등록</legend>
+			<ul>
+				<li>
+					<label for="id">아이디</label>
+					<input type="text" id="id" name="id">
+				</li>
+				<li>
+					<label for="name">이름</label>
+					<input type="text" id="name" name="name">
+				</li>
+				<li>
+					<label for="job">직업</label>
+					<input type="text" id="job" name="job">
+				</li>
+				<li>
+					<label for="address">주소</label>
+					<input type="text" id="address" name="address">
+				</li>
+				<li>
+					<label for="blood_type">혈액형</label>
+					<input type="text" id="blood_type" name="blood_type">
+				</li>
+				<li>
+					<input type="submit" value="추가">
+				</li>
+			</ul>
+		</fieldset>
+		</form>
+	<table id="output">
+	</table>
+</body>
+
+</html>

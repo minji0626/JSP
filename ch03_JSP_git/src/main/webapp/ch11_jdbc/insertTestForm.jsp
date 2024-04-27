@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Product Insert</title>
-<link rel="stylesheet" href="../css/style.css" type="text/css">
+<link rel="stylesheet" href="../css/style2.css" type="text/css">
 <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
@@ -31,8 +31,8 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="Insert">
-			<input type="button" value="List" onclick="location.href='selectTest.jsp'">
+			<input type="submit" class="button" value="Insert">
+			<input type="button" class="button" value="List" onclick="location.href='selectTest.jsp'">
 		</div>
 	</form>
 </div>
