@@ -63,7 +63,27 @@ public class MemberDAO {
 		ResultSet rs = null;
 		MemberVO member = null;
 		String sql = null;
-
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql="SELECT * FROM smember WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member = new MemberVO();
+				member.setId(rs.getString("id"));
+				member.setNum(rs.getInt("num"));
+				member.setPasswd(rs.getString("passwd"));
+			}else {
+				
+			}
+		}catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
 		return member;
 	}
 
