@@ -37,8 +37,9 @@ public class MemberDAO {
 			pstmt.setString(4, member.getEmail());
 			pstmt.setString(5, member.getPhone());
 			pstmt.executeUpdate();
+
 		}catch(Exception e) {
-			e.printStackTrace();
+			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
