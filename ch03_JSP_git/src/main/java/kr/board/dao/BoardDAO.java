@@ -93,7 +93,25 @@ public class BoardDAO {
 		ResultSet rs = null;
 		String sql = null;
 		BoardVO board = null;
-		
+		try {
+			conn = DBUtil.getConnection();
+			sql ="SELECT * FROM mboard WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				board = new BoardVO();
+				board.setNum(rs.getInt("num"));
+				board.setTitle(rs.getString("title"));
+				board.setName(rs.getString("name"));
+				board.setContent(rs.getString("content"));
+				board.setReg_date(rs.getDate("reg_date"));
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 		return board;
 	}
 	
