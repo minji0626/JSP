@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글 상세 정보</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style2.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 	

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글 작성</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style2.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 window.onload = function () {
@@ -50,7 +50,6 @@ window.onload = function () {
 </ul>
 	<div class="align-center">
 		<input type="submit" value="등록">
-		<input type="button" value="목록" onclick="loaction.href='list.jsp'">
 		<input type="button" value="목록" onclick="location.href='list.jsp'">
 	</div>
 </form>

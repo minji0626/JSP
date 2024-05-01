@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style2.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 <div class="page-main">
