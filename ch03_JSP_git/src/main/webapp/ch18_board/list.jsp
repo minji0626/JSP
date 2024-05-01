@@ -30,6 +30,7 @@
 			<th>작성자</th>
 			<th>작성일</th>
 		</tr>
+		  
 <%
 	for(BoardVO boardVO : list){
 %>

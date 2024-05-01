@@ -25,7 +25,7 @@
 		<h1>글 등록 완료</h1>
 		<div class="result-display">
 			<div class="align-center">
-				글 등록 성공!
+				글 등록 성공!  
 				<p>
 				<button onclick="location.href='list.jsp'">글 목록</button>
 			</div>

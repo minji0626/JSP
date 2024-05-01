@@ -51,6 +51,7 @@ window.onload = function () {
 	<div class="align-center">
 		<input type="submit" value="등록">
 		<input type="button" value="목록" onclick="loaction.href='list.jsp'">
+		<input type="button" value="목록" onclick="location.href='list.jsp'">
 	</div>
 </form>
 </div>

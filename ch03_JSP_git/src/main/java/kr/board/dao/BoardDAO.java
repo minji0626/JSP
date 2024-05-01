@@ -85,7 +85,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+	  
 	// 글 상세 보기
 	public BoardVO getBoard(int num) throws Exception{
 		Connection conn = null;
