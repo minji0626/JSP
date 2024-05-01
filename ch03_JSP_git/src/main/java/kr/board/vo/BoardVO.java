@@ -10,7 +10,6 @@ public class BoardVO {
 	private String content;
 	private String ip;
 	private Date reg_date;
-	  
 	public int getNum() {
 		return num;
 	}

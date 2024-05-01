@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import kr.board.vo.BoardVO;
 import kr.util.DBUtil;
 
