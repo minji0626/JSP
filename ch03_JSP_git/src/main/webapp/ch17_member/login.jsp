@@ -16,7 +16,7 @@
 	
 	if(member!=null){//id 존재
 		//사용자가 입력한 비밀번호와 table에 저장된 비밀번호 일치 여부 확인
-		check = member.isCheckedPassword(passwd);
+		check = member.isCheckedPassword(passwd); 
 	}
 	
 	if(check){//인증 성공

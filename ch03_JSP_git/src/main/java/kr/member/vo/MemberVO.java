@@ -2,9 +2,7 @@ package kr.member.vo;
 
 import java.sql.Date;
 
-//자바빈,VO(Value Object)
 public class MemberVO {
-	//프로퍼티
 	private int num;
 	private String id;
 	private String name;
@@ -13,6 +11,21 @@ public class MemberVO {
 	private String phone;
 	private Date reg_date;
 	
+	// 비밀번호 체크
+	public boolean isCheckedPassword(String userPasswd) {
+		if(passwd.equals(userPasswd)) { // 비밀번호 일치
+			return true;
+		}
+		// 비밀번호 불일치
+		return false;
+	}
+	 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -24,12 +37,6 @@ public class MemberVO {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getPasswd() {
 		return passwd;
@@ -55,4 +62,6 @@ public class MemberVO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
+	
+	
 }

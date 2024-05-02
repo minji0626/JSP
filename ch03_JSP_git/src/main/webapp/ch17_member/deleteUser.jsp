@@ -21,7 +21,7 @@
 	//아이디가 등록되어 있고 로그인한 아이디와 일치할 경우
 	if(member!=null && user_id.equals(id)){
 		//비밀번호 일치 여부 체크
-		check = member.isCheckedPassword(passwd);
+		check = member.isCheckedPassword(passwd); 
 	}
 	if(check){//인증 성공
 		//회원 정보 삭제	
