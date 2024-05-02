@@ -17,7 +17,7 @@ public class BoardVO {
 			return true;
 		}
 		// 비밀번호 불일치
-		return false;
+		return false; 
 	}
 	 
 	public int getNum() {
