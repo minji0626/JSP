@@ -10,6 +10,16 @@ public class BoardVO {
 	private String content;
 	private String ip;
 	private Date reg_date;
+	
+	// 비밀번호 체크
+	public boolean isCheckedPassword(String userPasswd) {
+		if(passwd.equals(userPasswd)) { // 비밀번호 일치
+			return true;
+		}
+		// 비밀번호 불일치
+		return false;
+	}
+	 
 	public int getNum() {
 		return num;
 	}
@@ -52,6 +62,5 @@ public class BoardVO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	 
-	
+
 }

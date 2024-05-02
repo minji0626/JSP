@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import kr.board.vo.BoardVO;
 import kr.util.DBUtil;
 
@@ -50,6 +52,20 @@ public class BoardDAO {
 		ResultSet rs = null;
 		String sql =null;
 		int count = 0;
+		try {
+			conn = DBUtil.getConnection();
+			sql="SELECT COUNT(*) FROM mboard";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				// 컬럼 인덱스를 사용하면 된다.하나만 있으면 어차피 1이기 때문에
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 		
 		return count;
 	}
@@ -63,8 +79,10 @@ public class BoardDAO {
 		String sql =null;
 		try {
 			conn = DBUtil.getConnection();
-			sql ="SELECT * FROM mboard ORDER BY num DESC";
+			sql = "SELECT * FROM (SELECT ROWNUM rnum,a.* FROM (SELECT * FROM mboard order by num asc )a) WHERE rnum>=? and rnum<=?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<BoardVO>();
 			while (rs.next()) {
@@ -84,7 +102,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	  
+	
 	// 글 상세 보기
 	public BoardVO getBoard(int num) throws Exception{
 		Connection conn = null;
@@ -103,6 +121,7 @@ public class BoardDAO {
 				board.setNum(rs.getInt("num"));
 				board.setTitle(rs.getString("title"));
 				board.setName(rs.getString("name"));
+				board.setPasswd(rs.getString("passwd"));
 				board.setContent(rs.getString("content"));
 				board.setReg_date(rs.getDate("reg_date"));
 			}
@@ -116,11 +135,41 @@ public class BoardDAO {
 	
 	// 글 수정하기
 	public void update(BoardVO boardVO) throws Exception{
-		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE mboard SET title=?,name=?,content=?,ip=? WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardVO.getTitle());
+			pstmt.setString(2, boardVO.getName());
+			pstmt.setString(3, boardVO.getContent());
+			pstmt.setString(4, boardVO.getIp());
+			pstmt.setInt(5, boardVO.getNum());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 	
 	// 글 삭제하기
 	public void delete(int num) throws Exception {
-		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn=DBUtil.getConnection();
+			sql="DELETE FROM mboard WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 }

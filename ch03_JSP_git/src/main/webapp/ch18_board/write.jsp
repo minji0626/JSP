@@ -9,8 +9,9 @@
 <%	
 	// 클라이언트의 ip 주소 저장
 	board.setIp(request.getRemoteAddr());
-
+	// dao를 변수명으로 지정하고, getinstance를 호출시켜 연결시킴
 	BoardDAO dao = BoardDAO.getInstance();
+	//dao에서 insert메서드를 호출하는데 board를 인자로 받아와라
 	dao.insert(board);
 %> 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
 		<h1>글 등록 완료</h1>
 		<div class="result-display">
 			<div class="align-center">
-				글 등록 성공!  
+				글 등록 성공!
 				<p>
 				<button onclick="location.href='list.jsp'">글 목록</button>
 			</div>

@@ -29,7 +29,7 @@ window.onload = function () {
 <body>
 <div class="page-main"> 
 <h1>글 작성</h1>
-<form action="write.jsp" id="write_form">
+<form action="write.jsp" id="write_form" method="post">
 <ul>
 	<li>
 		<label for="title">제목</label>
