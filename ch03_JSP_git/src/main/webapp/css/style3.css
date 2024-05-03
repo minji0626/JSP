@@ -118,6 +118,10 @@ a:hover {
 }
 
 #login_form input[type="button"]:hover{
-		background-color: #e3e4e6;
+/* 		background-color: #e3e4e6; */
+		font-weight: bold;
+}
+#login_form input[type="submit"]:hover{
+/* 		background-color: #e3e4e6; */
 		font-weight: bold;
 }
