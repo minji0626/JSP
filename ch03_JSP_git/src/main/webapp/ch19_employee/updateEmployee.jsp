@@ -23,7 +23,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사원 정보 업데이트</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style3.css">
 </head>
 <body>
 	<div class="page-main">

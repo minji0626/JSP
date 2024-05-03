@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사원 등록</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style3.css">
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){

@@ -5,12 +5,13 @@
 
 <%
 	String user_id = (String) session.getAttribute("user_id");
+	Integer user_num = (Integer) session.getAttribute("user_num");
 	if (user_id == null) { // 로그인 되지 않은 경우
 		response.sendRedirect("loginForm.jsp");
 		return;
-	} else {
+	} else { // 로그인 된 경우
 		request.setCharacterEncoding("utf-8");
-		
+	
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
 		
@@ -30,7 +31,7 @@
 <head>
 <meta charset="UTF-8">
 <title>탈퇴 완료</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style3.css">
 </head>
 <body>
 	<div class="page-main">
