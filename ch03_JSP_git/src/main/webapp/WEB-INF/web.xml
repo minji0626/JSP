@@ -11,13 +11,28 @@
   	<error-code>500</error-code>
   	<location>/ch06_errorPage/error/error500.jsp</location>
   </error-page>
-  
+
   <!-- 에러 타입별 에러 페이지 지정 -->
   <error-page>
   	<exception-type>java.lang.NullPointerException</exception-type>
   	<location>/ch06_errorPage/error/errorNullPointer.jsp</location>
   </error-page>
   
+  <!-- DispatcherServlet 설정 -->
+  <servlet>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<servlet-class>kr.web.mvc.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<url-pattern>/dispatcher</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 세션 유지 시간 지정() -->
+  <session-config>
+  	<session-timeout>50</session-timeout> <!-- 분단위 -->
+  </session-config>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
