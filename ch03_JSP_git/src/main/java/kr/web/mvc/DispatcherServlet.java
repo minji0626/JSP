@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*@WebServlet(name = "DispatcherServlet", urlPatterns = {"/dispatcher"})*/
 public class DispatcherServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,22 +22,34 @@ public class DispatcherServlet extends HttpServlet {
 	}
 	private void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		String message = request.getParameter("message");
-		String result = null;
-		if (message == null || message.equals("")) {
-			result = "메세지가 없습니다.";
-		} else if (message.equals("name")) {
-			result = "홍길동";
-		} else if (message.equals("base")) {
-			result="기본 호출입니다.";
-		} else {
-			result = "잘못된 호출입니다.";
+		Action com = null;
+		String view = null;
+		
+		String command = request.getRequestURI();
+		if(command.indexOf(request.getContextPath()) == 0) {
+			command = command.substring(request.getContextPath().length());
 		}
-						//	 속성명	   속성값
-		request.setAttribute("result",result );
+		
+		if (command.equals("/list.do")) {
+			com = new ListAction();
+		} else if (command.equals("/write.do")) {
+			com = new WriteAction();
+		} else if (command.equals("/detail.do")) {
+			com = new DetailAction();
+		} else if (command.equals("/update.do")){
+			com = new UpdateAction();
+		} else if (command.equals("/delete.do")) {
+			com = new DeleteAction();
+		}
+		
+		try {
+			view = com.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//forward 방식으로 view(messageView.jsp) 호출하기
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/messageView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}
 
